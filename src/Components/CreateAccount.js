@@ -1,25 +1,28 @@
 import React, { useState, useContext } from 'react';
-import { Form, Card } from 'react-bootstrap';
+import { Form, Card, Modal, Button, closeButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CreateAccount.css';
 import { Link } from 'react-router-dom';
 import DataContext from '../Context/data-context';
 
-function CreateAccount( props ) {
+function CreateAccount({ updateUserStatus, isUser }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  // const [success, setSuccess] = useState(false);
   
   const ctx = useContext(DataContext);
-  
-  // let history = useHistory();
 
-  const handleSubmit = () => {
-    if (firstName === "" ) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (firstName === "") {
       alert("Error: First name field required.");
       return
     } else if (firstName[0] !== firstName[0].toUpperCase()) {
@@ -27,7 +30,7 @@ function CreateAccount( props ) {
       return;
     }
 
-    if (lastName === "" ) {
+    if (lastName === "") {
       alert("Error: Last name field required.");
       return;
     }  else if (lastName[0] !== lastName[0].toUpperCase()) {
@@ -35,7 +38,7 @@ function CreateAccount( props ) {
       return;
     }
 
-    if (email === "" ) {
+    if (email === "") {
       alert("Error: Email field required.");
       return;
     }
@@ -44,22 +47,20 @@ function CreateAccount( props ) {
       alert("Error: Password field required.")
       return;
     }
-
+    
     if (isChecked === false) {
       alert("Error: Must agree to Terms & Conditions to create account.")
       return;
     }
     
-    if (password.length < 8 ) {
+    if (password.length < 8) {
       alert("Error: Password must contain at least 8 characters.");
       setPassword("");
     } else {
-      props.setUserName(firstName);
-      props.userStatus();
+      updateUserStatus();
       let fullName = firstName + " " + lastName;
       ctx.saveUserInfo(fullName, email, password, 0);
       alert('Success! Your account has been created.');
-      // history.push("/CreateAccount/");
     }
   }
   
@@ -89,19 +90,19 @@ function CreateAccount( props ) {
   }
 
   return (
-    <div className="create-account">
+    <div className="card-page create-acc">
       <h1 className="join-us">Join the Flock</h1>
       <h3 className="online-acc">Create an Online Account</h3>
       <Card>
         <form 
-          className="createacc-form"
+          className="acc-form"
           onSubmit={handleSubmit}
         >
-          {props.isUser && <div>
-            {/* <h2 className="success-msg">Success! Account has been created.</h2> */}
-            <p>If you would like to add another account, complete form again.</p> 
+          {isUser && 
+            <div>
+              <p>If you would like to add another account, complete form again.</p> 
             </div>}
-          <label className="name-label">Name</label>
+          <label className="name-label">Full Name</label>
           <div className="name-input-container">
             <input
               type="text"
@@ -154,30 +155,43 @@ function CreateAccount( props ) {
               onChange={checkbox}
               name="terms"
             />
-            <label htmlFor="terms">&nbsp;I agree to the&nbsp;</label>
-            {/* <a href="#">Terms & Conditions</a> */}
+            <label htmlFor="terms">&nbsp;I agree to the</label>
+            <button className="terms-btn" type="button" onClick={handleShow}>Terms & Conditions</button>
           </div>
           
-         <button 
-            className="submit-btn"
+          <button 
+            className="rd-btn reg-btn"
             type="submit"
             disabled={!isValid}
           >
-            {!props.isUser ? 'Create Account' : 'Add Another Account'}
+            {!isUser ? 'Create Account' : 'Add Another Account'}
           </button>
-
         </form>
-
-        <h3>Already have an account?
+        <h5 className="card-foot">Already have an account? &nbsp;
           <Link to="/Login/">
-            <button>
+            <button  className="rd-btn reg-btn">
               Log in here
             </button>
           </Link>
-        </h3>
+        </h5>
       </Card>
-    </div>
 
+
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Terms & Conditions</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          This application is not real.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Got it!
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 }
 

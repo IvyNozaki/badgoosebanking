@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Navbar from './Components/Navbar';
 import "./App.css";
 import DataContext from './Context/data-context';
@@ -6,44 +6,37 @@ import DataContext from './Context/data-context';
 function App() {
   const [balance, setBalance] = useState(0);
   const [isUser, setIsUser] = useState(false);
-  const [userName, setUserName] = useState("");
-
+  const [username, setUsername] = useState("");
+  
   const ctx = useContext(DataContext);
+  
+  useEffect(() => {
+    setUsername(ctx.currentUser.name);
+    setBalance(ctx.currentUser.balance);
+  }, [ctx.currentUser])
 
-  const updateBalance = (num, calc) => {
-    if (calc === "ADD") {
-      // setBalance(prevBal => parseInt(prevBal) + parseInt(num));
-      ctx.updateCtxBalance(setBalance(prevBal => parseInt(prevBal) + parseInt(num)));
-    } else if(calc === "MINUS"){
-      // setBalance(prevBal => parseInt(prevBal) - parseInt(num));
-      ctx.updateCtxBalance(setBalance(prevBal => parseInt(prevBal) - parseInt(num)));
-    }
-
-    // ctx.updateCtxBalance(balance);
-  };
-
-  const setUserStatus = () => {
+  const updateUserStatus = () => {
     setIsUser(true);
+  }
+  
+  const getUsername = (name) => {
+    setUsername(name);
   }
 
   const logout = () => {
-    console.log("logging out");
     setBalance(0);
-    setUserName('');
+    setUsername('');
     setIsUser(false);
   }
-
+  
   return (
     <div className="App">
-      <Navbar 
-        isUser={isUser} 
-        setIsUser={setIsUser}
+      <Navbar
+        isUser={isUser}
+        username={username}
         balance={balance}
-        setBalance={setBalance}
-        userName={userName}
-        setUserName={setUserName}
-        updateBalance={updateBalance}
-        setUserStatus={setUserStatus}
+        getUsername={getUsername}
+        updateUserStatus={updateUserStatus}
         logout={logout}
       />
     </div>

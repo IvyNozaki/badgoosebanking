@@ -4,15 +4,18 @@ const DataContext = createContext({
   saveUserInfo: () => {},
   users: [],
   updateCtxBalance: () => {},
+  currentUser: {},
+  updateCurrUser: () => {}
 });
 
 export const DataContextProvider = ({ children }) => {
   const [userList, setUserList] = useState([{      
     "name": 'Ivy Nozaki',
-    "email": 'ivy@goosebanking.com',
-    "password": 'geeseftw',
-    "balance": 500
+    "email": 'ivy@gb.com',
+    "password": 'sillygoose',
+    "balance": 1000
   }]);
+  const [currUser, setCurrUser] = useState("");
   
   const saveUserHandler = (name, email, password, balance) => {
     let newUser = {
@@ -21,19 +24,53 @@ export const DataContextProvider = ({ children }) => {
       "password": password,
       "balance": balance
     };
+
     setUserList(prevState => [...prevState, newUser]);
+    setCurrUser(newUser);
   }
 
-  const updateCtxBalance = (bal) => {
-    console.log(bal);
-    // let updatedUser = {...userList[0], "balance": bal}
-    // setUserList([updatedUser]);
+  const updateCtxBalance = (num, calc) => {
+    let newBal = 0;
+
+    if (calc === "ADD") {
+      setUserList(prevState => {
+        for (let i = 0; i < prevState.length; i++) {
+          if (prevState[i].email === currUser.email) {
+            newBal = parseInt(prevState[i].balance) + parseInt(num);
+            prevState[i].balance = newBal
+          }
+        }
+        return prevState;
+      })
+    } else if(calc === "MINUS") {
+      setUserList(prevState => {
+        for (let i = 0; i < prevState.length; i++) {
+          if (prevState[i].email === currUser.email) {
+            newBal = parseInt(prevState[i].balance) - parseInt(num)
+            prevState[i].balance = newBal
+          }
+        }
+        return prevState;
+      })
+    }
+    
+    setCurrUser(prevState => {
+      return {...prevState, "balance":newBal}
+    })
+  }
+
+  const updateCurrUser = (username) => {
+    let loggedInUser = userList.filter(user => user.email === username)[0];
+
+    setCurrUser(loggedInUser);
   }
 
   let myValue = {
     saveUserInfo: saveUserHandler,
     users: userList,
-    updateCtxBalance: updateCtxBalance
+    updateCtxBalance: updateCtxBalance,
+    currentUser: currUser,
+    updateCurrUser: updateCurrUser
   }
 
   return (

@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import { Card, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,9 +8,9 @@ const AllData = () => {
   const ctx = useContext(DataContext);
 
   return (
-    <Card>
-      <h1>All Data in Store</h1>
-      <Table striped bordered hover>
+    <Card className="card-page">
+      <h1 className="card-head">All Data in Store</h1>
+      <Table striped bordered hover className="card-body">
         <thead>
           <tr>
             <th>Full Name</th>
@@ -31,7 +32,6 @@ const AllData = () => {
         })}
         </tbody>
       </Table>
-      {console.log(ctx.users)}
     </Card>
   );
 }

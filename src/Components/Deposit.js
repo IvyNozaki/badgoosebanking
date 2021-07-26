@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+
+import React, { useState, useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Deposit.css';
+// import './Deposit.css';
+import DataContext from '../Context/data-context';
 
-function Deposit( props ) {
+function Deposit({ balance }) {
   const [deposit, setDeposit] = useState(0);
   const [isValid, setIsValid] = useState(false);
+
+  const ctx = useContext(DataContext);
   
-  let status = `Account Balance $ ${props.currentBalance}`;
+  let status = `Account Balance $ ${balance}`;
   
   const handleChange = e => {
     setIsValid(true);
@@ -21,29 +25,30 @@ function Deposit( props ) {
       setIsValid(false);
       return;
     }
-
+    
     if (deposit < 0) {
       alert("Error: Deposits must be made in positive quantities.");
       setDeposit(0);
       setIsValid(false);
       return;
     }
-
-    props.updateBalance(deposit, "ADD");
+    alert('Deposit was a success!');
+    ctx.updateCtxBalance(deposit, "ADD");
     e.preventDefault();
   };
 
   return (
-    <Card className="deposit">
-      <h1>Make a Deposit</h1>
+    <Card className="deposit card-page">
+      <h1 className="card-head">Make a Deposit</h1>
       <form onSubmit={handleSubmit}>
-        <h2 id="total">{status}</h2>
+        <h2 id="total" className="balance-card">{status}</h2>
+        <hr/>
          <input 
            type="text" 
            value={deposit}
            min="0"
            onChange={handleChange}/>
-         <input 
+         <input  className="rd-btn"
           type="submit" 
           width="200" 
           disabled={!isValid}

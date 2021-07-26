@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+
+import React, { useState, useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Withdraw.css';
+// import './Withdraw.css';
+import DataContext from '../Context/data-context';
 
-function Withdraw( props ) {
+function Withdraw({ balance }) {
   const [withdrawal, setWithdrawal] = useState(0);
   const [isValid, setIsValid] = useState(false);
 
-  let status = `Account Balance $ ${props.currentBalance}`;
+  const ctx = useContext(DataContext);
+
+  let status = `Account Balance $ ${balance}`;
 
   const handleChange = e => {
     setIsValid(true);
@@ -21,7 +25,7 @@ function Withdraw( props ) {
       setIsValid(false);
       return;
     }
-
+    
     if (withdrawal < 0) {
       alert("Error: Withdrawals must be made in positive quantities.");
       setWithdrawal(0);
@@ -29,31 +33,35 @@ function Withdraw( props ) {
       return;
     }
 
-    if (withdrawal > props.currentBalance - 5) {
+    if (withdrawal > balance - 5) {
       alert("Account must have a minimum balance of $5.00")
     } else {
-      props.updateBalance(withdrawal, "MINUS")
+      ctx.updateCtxBalance(withdrawal, "MINUS");
+      alert('Withdrawal was a success!');
     }
     e.preventDefault();
   };
 
   return (
-    <Card className="withdraw">
-      <h1>Make a Withdrawal</h1>
+    <Card className="withdraw card-page">
+      <h1 className="card-head">Make a Withdrawal</h1>
       <form onSubmit={handleSubmit}>
-        <h2 id="total">{status}</h2>
-        <input
-          type="text"
-          value={withdrawal}
-          min="0"
-          onChange={handleChange}
-        />
-        <input
-          type="submit"
-          width="200"
-          disabled={!isValid}
-          value="Submit"
-        />
+        <h2 id="total" className="balance-card">{status}</h2>
+        <hr/>
+        <div className="trans-container">
+          <input
+            type="text"
+            value={withdrawal}
+            min="0"
+            onChange={handleChange}
+          />
+          <input  className="rd-btn"
+            type="submit"
+            width="200"
+            disabled={!isValid}
+            value="Submit"
+          />
+        </div>
       </form>
     </Card>
   );

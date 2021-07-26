@@ -21,7 +21,11 @@
 }
 
 .bank-logo {
-  width: 20%;
+  background: white;
+  border-radius: 50%;
+  width: 100px;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
 .links-container {
@@ -47,5 +51,5 @@
 .links-container a:hover,
 .links-container a:focus {
   transform: scale(1.2);
-  color: aqua;
+  color: rgb(61, 157, 139);
 }

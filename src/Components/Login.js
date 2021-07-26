@@ -1,26 +1,27 @@
+
 import React, { useState, useContext, useEffect } from 'react';
 import { Form, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router-dom';
 import DataContext from '../Context/data-context';
 
-const Login = ( props ) => {
+const Login = ({ updateUserStatus, getUsername }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [validLogin, setValidLogin] = useState(false);
   
   const ctx = useContext(DataContext);
+
   const history = useHistory();
 
   useEffect(() => {
     for (let i = 0; i < ctx.users.length; i++) {
       if (ctx.users[i].email === username && ctx.users[i].password === password) {
         setValidLogin(true);
-        props.setBalance(ctx.users[i].balance);
       }
     }
-  }, [username, password, isValid])
+  }, [username, password, ctx.users])
 
   const usernameInput = (e) => {
     setUsername(e.target.value);
@@ -45,25 +46,22 @@ const Login = ( props ) => {
     }
 
     if (validLogin === true) {
-        props.userStatus();
-        props.setUserName('Ivy');
-        setValidLogin(true);
-        alert('Welcome back!')
-        history.push('/')
+      updateUserStatus();
+      ctx.updateCurrUser(username);
+      alert('Welcome back!');
+      history.push('/');
     } else {
       alert('Invalid email or password');
       setUsername('');
       setPassword('');
     }
-
-
   }
 
   return (
-    <Card>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div className="email-input-container">
+    <Card className="card-page">
+      <h1 className="card-head">Login</h1>
+      <form className="login-form" onSubmit={handleLogin}>
+        <div className="input-container">
           <label className="name-label">Username</label>
           <input
             type="email" 
@@ -78,8 +76,8 @@ const Login = ( props ) => {
             </Form.Text>
         </div>
 
-        <div className="password-input-container">
-          <label className="name-label">Password</label>
+        <div className="input-container">
+          <label className=" name-label password-label">Password</label>
           <input
             type="password" 
             value={password}
@@ -89,9 +87,11 @@ const Login = ( props ) => {
             autoComplete="off"
           />
         </div>
-        <button type='submit' disabled={!isValid}>
-          Log in
-        </button>
+        <div className="btn-container input-container">
+          <button className="rd-btn reg-btn" type='submit' disabled={!isValid}>
+            Log in
+          </button>
+        </div>
       </form>
 
     </Card>
