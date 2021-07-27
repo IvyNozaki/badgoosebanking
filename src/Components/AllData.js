@@ -10,6 +10,7 @@ const AllData = () => {
   return (
     <Card className="card-page">
       <h1 className="card-head">All Data in Store</h1>
+      <div className="table-container">
       <Table striped bordered hover className="card-body">
         <thead>
           <tr>
@@ -32,6 +33,7 @@ const AllData = () => {
         })}
         </tbody>
       </Table>
+      </div>
     </Card>
   );
 }

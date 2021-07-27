@@ -1,3 +1,7 @@
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 body {
   position: relative;
   background: #143f3f;
@@ -15,6 +19,7 @@ body {
 }
 
 .card-page {
+  width: 100%;
   background: #1a5150bc;
   border-radius: 10px;
   padding: 30px 20px 15px 20px;
@@ -36,6 +41,30 @@ body {
   padding: 5px 10px;
 }
 
+.table-container {
+  overflow: auto;
+}
+
+.logout-container {
+  right: 5%;
+  position: absolute;
+  /* border: 1px solid white; */
+}
+
+.logout-btn {
+  font-size: 1.7vw;
+  border: none;
+  border-radius: 10px;
+  background: #7e79ce;
+  color: white;
+  display: inline;
+  white-space: nowrap;
+}
+
+.data-link {
+  white-space: nowrap;
+}
+
 .rd-btn {
   width: 20%;
   background: rgb(93 125 82 / 54%);
@@ -45,6 +74,7 @@ body {
   color: white;
   padding: 10px 20px;
   margin-right: 20px;
+  margin-bottom: 5px;
 }
 
 .rd-btn:hover {
@@ -54,14 +84,12 @@ body {
 .rd-btn:disabled {
   background: lightgray;
   color: gray;
-  /* text-decoration: none; */
 }
 
 .reg-btn {
   width: 20%;
   margin-top: 2px;
   margin-bottom: 5px;
-  /* text-decoration: none; */
 }
 
 .btn-container {
@@ -76,10 +104,20 @@ form {
 
 .balance-card {
   text-align: center;
+  color: grey;
 }
 
 .trans-container {
   background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.trans-input {
+  width: 20vw;
+  margin-bottom: 10px;
 }
 
 .form {
@@ -87,15 +125,12 @@ form {
 }
 
 .login-form {
-  /* padding-top: 10px; */
   border-radius: 0.25rem;
   background: white;
 }
 
 .input-container {
   padding-left: 5%;
-  /* padding-top: 2%;
-  padding-bottom: 2%; */
   background: rgb(150 141 214 / 18%);
 }
 
@@ -128,4 +163,80 @@ form {
   height: 300px;
   padding: 10px;
   object-fit: cover;
+}
+.welcome-user-img {
+  width: 50%;
+  height: 200px;
+  padding: 10px;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) {
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+  }
+
+  h2 {
+    font-size: 3.5vw;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .links-container a {
+    position: sticky;
+    width: 100vw;
+    font-size: 3.5vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    color: rgb(61, 157, 139);
+  }
+
+  .logo-container {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .bank-logo {
+    width: 30%;
+    height: auto;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+  .bank-title {
+    font-size: 8vw;
+    white-space: nowrap;
+    text-shadow: 0.7vw 0 #1a5150;
+  }
+
+  .rd-btn,
+  .reg-btn {
+    white-space: nowrap;
+    min-width: fit-content;
+  }
+
+  .join-us,
+  .online-acc {
+    font-size: 5.5vw;
+    padding-left: 0;
+    white-space: nowrap;
+    color: white;
+    text-shadow: 4px 0 black;
+  }
+
+  .name-label {
+    margin-bottom: 1px;
+    font-size: 4.5vw;
+  }
 }

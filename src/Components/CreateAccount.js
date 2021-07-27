@@ -151,6 +151,7 @@ function CreateAccount({ updateUserStatus, isUser }) {
           
           <div className="checkbox-input-container">
             <input
+              className="checkbox"
               type="checkbox" 
               onChange={checkbox}
               name="terms"
@@ -167,13 +168,13 @@ function CreateAccount({ updateUserStatus, isUser }) {
             {!isUser ? 'Create Account' : 'Add Another Account'}
           </button>
         </form>
-        <h5 className="card-foot">Already have an account? &nbsp;
+        {!isUser && <h5 className="card-foot">Already have an account? &nbsp;
           <Link to="/Login/">
             <button  className="rd-btn reg-btn">
               Log in here
             </button>
           </Link>
-        </h5>
+        </h5>}
       </Card>
 
 

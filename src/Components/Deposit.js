@@ -2,7 +2,6 @@
 import React, { useState, useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Deposit.css';
 import DataContext from '../Context/data-context';
 
 function Deposit({ balance }) {
@@ -43,7 +42,9 @@ function Deposit({ balance }) {
       <form onSubmit={handleSubmit}>
         <h2 id="total" className="balance-card">{status}</h2>
         <hr/>
+        <div className="trans-container">
          <input 
+           className="trans-input"
            type="text" 
            value={deposit}
            min="0"
@@ -53,6 +54,7 @@ function Deposit({ balance }) {
           width="200" 
           disabled={!isValid}
           value="Submit"/>
+        </div>
       </form>
     </Card>
   );

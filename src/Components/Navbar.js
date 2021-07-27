@@ -44,7 +44,7 @@ const Navbar = ({
           {isUser && <Link to="/Withdraw/">
             Withdraw
           </Link>}
-          <Link to="/AllData/">
+          <Link className="data-link" to="/AllData/">
             All Data
           </Link>
         </div>

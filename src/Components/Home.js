@@ -1,16 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Home.css';
 import { Link } from 'react-router-dom';
 import Welcome from './gary-bendig-WPmPsdX2ySw-unsplash.jpg'
+import WelcomeUser from "./kamala-saraswathi-jBdN9Rx8nZ0-unsplash.jpg"
 
 function Home ({ isUser, username, balance, logout }) {
   const handleLogout = () => {
     logout();
   }
-
-  // let firstName = username.split(" ")[0];
 
   return (
     <>
@@ -38,32 +36,46 @@ function Home ({ isUser, username, balance, logout }) {
 
       {isUser && <Card className="homepage user-home card-page">
         <h1  className="card-head">Welcome {username}!</h1>
+        <div className="logout-container">
+          <button
+            className="logout-btn" 
+            onClick={handleLogout}
+            >
+            Logout
+          </button>
+        </div>
         <div className="card-body user-home-body">
-          <h3> Current Account Balance: ${balance}</h3>
+          <img src={WelcomeUser} className="welcome-user-img" alt="welcome user image" />
+          <h3>Hey there silly goose! Your Goose Banking account is ready for some action! Here, your transactions have no real life consequences so with unlimited deposits and withdrawals, this pond is your money playground! What will it be today?!</h3>
           <hr/>
-
           <div className="btn-container">
-            <Link to="/Deposit/">
-              <button>
-                Make Deposit
-              </button>
-            </Link>
+            <h3>Current Account Balance is ${balance}</h3>
+            <div>
+              <Link to="/Deposit/">
+                <button className="rd-btn">
+                  Make Deposit
+                </button>
+              </Link>
 
-            <Link to="/Withdraw/">
-              <button>
-                Make Withdrawal
-              </button>
-            </Link>
+              <Link to="/Withdraw/">
+                <button className="rd-btn">
+                  Make Withdrawal
+                </button>
+              </Link>
+            </div>
+            <hr/>
 
+            <h3>Add another account for any need</h3>
             <Link to="/CreateAccount/">
-              <button>
+              <button className="rd-btn">
                 Add another account
               </button>
             </Link>
-
+            {/* <hr/>
+            <h3>Tired? Log out here</h3>
             <button onClick={handleLogout}>
                 Logout
-            </button>
+            </button> */}
           </div>
         </div>
         

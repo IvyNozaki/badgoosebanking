@@ -2,7 +2,6 @@
 import React, { useState, useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './Withdraw.css';
 import DataContext from '../Context/data-context';
 
 function Withdraw({ balance }) {
@@ -50,6 +49,7 @@ function Withdraw({ balance }) {
         <hr/>
         <div className="trans-container">
           <input
+            className="trans-input"
             type="text"
             value={withdrawal}
             min="0"

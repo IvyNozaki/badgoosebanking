@@ -6,30 +6,32 @@
 }
 
 .logo-container {
+  width: fit-content;
   display: flex;
-  width: 45%;
+  width: 35%;
 }
 
 .bank-title {
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 4em;
-  left: 150px;
-  text-shadow: 8px 0 #1a5150;
+  font-size: 4.4vw;
+  margin-left: 5px;
+  text-shadow: 0.5vw 0 #1a5150;
 }
 
 .bank-logo {
   background: white;
   border-radius: 50%;
-  width: 100px;
+  width: 30%;
+  height: auto;
   object-fit: cover;
-  margin-right: 10px;
 }
 
 .links-container {
-  width: 45%;
+  width: 40%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -42,7 +44,7 @@
 
 .links-container a {
   color: white;
-  font-size: 1.3em;
+  font-size: 2vw;
   text-decoration: none;
   padding: 0 20px;
   transition: all 0.3s ease-in-out;
