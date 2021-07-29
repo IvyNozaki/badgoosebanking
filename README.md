@@ -122,6 +122,7 @@ New info stored will not be kept upon reloading application. (i.e. Balance updat
 2. Improve mobile view optimization.
 3. Add logic to have the homepage greeting to just the first name and not the whole name.
 4. Add logic to allow user to choose which account to be logged in as after adding an account.
+5. Fix bug that sometimes resets isUser state when depositing a negative number.
 
 ---
 
