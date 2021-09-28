@@ -10,7 +10,7 @@ Interactive banking application that allows you to create or log into an account
 
 ---
 
-## **Installion Guidelines**
+## **Installation Guidelines**
 
 If you would like to copy the application, follow the steps below:
 
