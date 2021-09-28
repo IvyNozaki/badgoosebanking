@@ -4,11 +4,24 @@
 
 ## **Description**
 
-Interactive banking application that allows you to create or log into an account where you can make deposits or withdrawals.
+Interactive banking application that allows you to create or log into an account where you can make deposits or withdrawals. I have created this application to practice how to create a Full Stack application using MERN.
 
 ![Homepage default](README-assets/homepage-default.png)
 
 ---
+
+## **Installion Guidelines**
+
+If you would like to copy the application, follow the steps below:
+
+1. Select the Fork button in the top right corner of the github repo.
+2. Click on the green Code button.
+   - You can either clone the repo via HTTPS or SSH link.
+3. Open up your terminal and navigation to where you would like to clone the project.
+4. Enter the command "git clone [HTTPS/SSH link]"
+   - You should be able to see the project files in the location selected in Step 3.
+5. Enter the command "npm install" to install the packages in the package.json.
+6. Enter the command "npm start" to start the project.
 
 ## **How to run**
 
@@ -118,7 +131,7 @@ New info stored will not be kept upon reloading application. (i.e. Balance updat
 
 ## **Road Map**
 
-1. Allow save data to store in local storage.
+1. Store all data in a database.
 2. Improve mobile view optimization.
 3. Add logic to have the homepage greeting to just the first name and not the whole name.
 4. Add logic to allow user to choose which account to be logged in as after adding an account.
@@ -126,7 +139,7 @@ New info stored will not be kept upon reloading application. (i.e. Balance updat
 
 ---
 
-## **Licenses**
+## **Licenses & Technology**
 
 - MIT
 - Logo was created by using Procreate
