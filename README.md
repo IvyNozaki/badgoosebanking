@@ -145,4 +145,9 @@ New info stored will not be kept upon reloading application. (i.e. Balance updat
 - Logo was created by using Procreate
 - Images from [Unsplash](https://unsplash.com/)
 - Fonts from [Google Fonts](https://fonts.google.com/)
-- Custom styling and code using HTML, CSS, JavaScript, React and Bootstrap
+- HTML
+- CSS
+- JavaScript
+- React
+- React Bootstrap
+- React Router
